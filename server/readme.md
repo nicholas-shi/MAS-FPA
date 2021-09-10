@@ -2,11 +2,14 @@
 
 ## Getting Started
 1. After cloning / pulling the repo, make sure to run an `npm install` in the server directory (`cd server`)
-2. Create a `.env` file in the `server` directory with a single field:
+2. Create a `.env` file in the `server` directory with a the following fields:
 ```
 mongoURI=mongodb+srv://<username>:<password>@<mongodb-cluster-id>.mongodb.net/<database_name>?retryWrites=true&w=majority
+jwtSecret=<some_jwt_secret>
 ```
     Note: you can get the above mongoURI inside MongoDB Atlas dashboard. Navigate to your database and click on "connect." This should give you your mongoURI, from which you only need to paste in your password in the field <password>.
+
+    Also, the jwtSecret can be literally anything. Just keep it secret.
 
 3. For development,run `npm run dev` inside the `server` directory. If production, run `npm run start`.
 
