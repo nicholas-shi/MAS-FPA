@@ -7,7 +7,7 @@ const { check, validationResult } = require("express-validator");
 const mongoose = require('mongoose');
 
 // @route           GET /api/todo/all
-// @desc            Gets ALL current todo
+// @desc            Gets ALL todo
 // @access          Public
 router.get('/all', async (req, res) => {
     try {
@@ -20,7 +20,21 @@ router.get('/all', async (req, res) => {
         }
         return res.status(200).json(todos);
     } catch (err) {
+        console.error(err);
+        return res.status(500).json({msg: "Error getting todos"})
+    }
+})
 
+// @route           GET /api/todo/:id
+// @desc            Get a todo
+// @access          Public
+router.get('/:id', async (req, res) => {
+    try {
+        todo = await Todo.findById(req.params.id);
+        return res.status(200).json(todo);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({msg: "Error getting todo"})
     }
 })
 
