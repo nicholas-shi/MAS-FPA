@@ -2,11 +2,14 @@
 
 ## Getting Started
 1. After cloning / pulling the repo, make sure to run an `npm install` in the server directory (`cd server`)
-2. Create a `.env` file in the `server` directory with a single field:
+2. Create a `.env` file in the `server` directory with a the following fields:
 ```
 mongoURI=mongodb+srv://<username>:<password>@<mongodb-cluster-id>.mongodb.net/<database_name>?retryWrites=true&w=majority
+jwtSecret=<some_jwt_secret>
 ```
     Note: you can get the above mongoURI inside MongoDB Atlas dashboard. Navigate to your database and click on "connect." This should give you your mongoURI, from which you only need to paste in your password in the field <password>.
+
+    Also, the jwtSecret can be literally anything. Just keep it secret.
 
 3. For development,run `npm run dev` inside the `server` directory. If production, run `npm run start`.
 
@@ -140,5 +143,78 @@ e.g.:
 ```json
 {
   "msg": "Todo removed"
+}
+```
+
+---
+
+## User Authentication
+
+Users are stored in a database collection. At the moment, the only fields available for a user registration are:
+
+- username (required)
+- password (required)
+- firstname (required)
+- lastname (required)
+
+All passwords are salted and hashed using `bcrypt`.
+
+### `POST http://localhost:5000/api/users/`
+- **Description:** Register a user 
+- **Params:** *none*
+- **Body:** (JSON)
+
+Example
+```json
+{
+	"username": "test",
+	"password": "password",
+	"firstname": "first name",
+	"lastname": "last name"
+}
+```
+- **Returns**: A JSON containing a token
+e.g.:
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjEzYmMwZjc4ZGQzN2Y2OGYzNWRiZmZmIn0sImlhdCI6MTYzMTMwNTk3NiwiZXhwIjoxNjMxNjY1OTc2fQ.SGbJFvTRDCFgc8luGDHdf_-gNkgV-r4woOxnZCKTG18"
+}
+```
+
+### `POST http://localhost:5000/api/auth/`
+- **Description:** Authenticate (login) a user 
+- **Params:** *none*
+- **Body:** (JSON)
+
+Example
+```json
+{
+	"username": "test",
+	"password": "password",
+}
+```
+- **Returns**: A JSON containing a token
+e.g.:
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjEzYmMwZjc4ZGQzN2Y2OGYzNWRiZmZmIn0sImlhdCI6MTYzMTMwNTk3NiwiZXhwIjoxNjMxNjY1OTc2fQ.SGbJFvTRDCFgc8luGDHdf_-gNkgV-r4woOxnZCKTG18"
+}
+```
+
+### `GET http://localhost:5000/api/auth/`
+- **Description:** Get the user from the token
+- **Headers:** `x-auth-token`
+
+This is the JWT you would get from registering or logging a user in. For example:
+```
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjEzYmMwZjc4ZGQzN2Y2OGYzNWRiZmZmIn0sImlhdCI6MTYzMTMwNTk3NiwiZXhwIjoxNjMxNjY1OTc2fQ.SGbJFvTRDCFgc8luGDHdf_-gNkgV-r4woOxnZCKTG18
+```
+- **Params:** *none*
+- **Body:** *none*
+- **Returns**: A JSON containing a token
+e.g.:
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjEzYmMwZjc4ZGQzN2Y2OGYzNWRiZmZmIn0sImlhdCI6MTYzMTMwNTk3NiwiZXhwIjoxNjMxNjY1OTc2fQ.SGbJFvTRDCFgc8luGDHdf_-gNkgV-r4woOxnZCKTG18"
 }
 ```

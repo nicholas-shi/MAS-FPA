@@ -3,9 +3,6 @@ const router = express.Router();
 const Todo = require("../../models/Todo");
 const { check, validationResult } = require("express-validator");
 
-// delete later
-const mongoose = require('mongoose');
-
 // @route           GET /api/todo/all
 // @desc            Gets ALL todo
 // @access          Public
@@ -136,32 +133,4 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-
-// delete later
-router.get('/dev', async (req, res) => {
-    try {
-        mongoose.connection.db.listCollections().toArray(function (err, names) {
-            // console.log(names); // [{ name: 'dbname.myCollection' }]
-            return res.status(200).json(names);
-        });
-
-    } catch (err) {
-        console.error(err);
-        return res.status(500);
-    }
-
-})
-
-router.delete('/dev', async (req, res) => {
-    try {
-        Todo.collection.drop();
-        mongoose.connection.db.listCollections().toArray(function (err, names) {
-            // console.log(names); // [{ name: 'dbname.myCollection' }]
-            return res.status(200).json(names);
-        });
-    } catch (err) {
-        console.error(err);
-        return res.status(500).json({ msg: err });
-    }
-})
 module.exports = router;
