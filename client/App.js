@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import Routes from './Router';
+// import Routes from './Router';
+import TaskView from './pages/TaskView/index';
 
 export default function App() {
   return (
     <React.Fragment>
-      <Routes />
+      <TaskView />
     </React.Fragment>
   );
 }

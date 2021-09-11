@@ -7,6 +7,7 @@ import {
   StyleSheet,
   StatusBar,
 } from "react-native";
+import TaskItem from '../TaskItem/index';
 
 const sampleTask = [
   {
@@ -57,33 +58,13 @@ const sampleTask = [
 ];
 
 export default TaskList = (props) => {
-  const renderItem = ({ item }) => {
-    return <TaskItem item={item} />;
-  };
-
   let taskData = getAllTaskInfo();
   return (
     <View>
       <Text>List Begins</Text>
-      <FlatList
-        data={taskData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
-  );
-};
-
-const TaskItem = ({ item }) => {
-  const onPressHandler = () => {
-    console.log("Task " + item.title + " Pressed");
-  };
-
-  return (
-    <View>
-      <Text style={styles.item} onPress={onPressHandler}>
-        {item.title}
-      </Text>
+      {taskData.map(e => {
+        return <TaskItem taskName={e.title} taskDetail={e.description} taskKey={e.id} />
+      })}
     </View>
   );
 };
