@@ -3,18 +3,19 @@ const router = express.Router();
 const Todo = require('../../models/Todo');
 const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth'); //importing our middleware
+var ObjectId = require('mongoose').Types.ObjectId;
 
 // @route           GET /api/todo/all
 // @desc            Gets ALL todo
 // @access          Public
-router.get('/all', async (req, res) => {
+router.get('/all', auth, async (req, res) => {
   try {
     const { limit } = req.body;
 
     if (limit) {
-      todos = await Todo.find().limit(limit);
+      todos = await Todo.find({ user: req.user.id }).limit(limit);
     } else {
-      todos = await Todo.find();
+      todos = await Todo.find({ user: req.user.id });
     }
     return res.status(200).json(todos);
   } catch (err) {
@@ -26,9 +27,12 @@ router.get('/all', async (req, res) => {
 // @route           GET /api/todo/:id
 // @desc            Get a todo
 // @access          Public
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
   try {
     todo = await Todo.findById(req.params.id);
+    if (todo.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Unauthorized' });
+    }
     return res.status(200).json(todo);
   } catch (err) {
     console.error(err);
