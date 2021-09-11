@@ -2,8 +2,6 @@
 
 ## Getting Started
 
-### Backend Setup
-
 1. After cloning / pulling the repo, make sure to run an `npm install` in the main directory
 2. Create a `.env` file in the root directory with the following fields:
 
