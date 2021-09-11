@@ -7,7 +7,7 @@ var ObjectId = require('mongoose').Types.ObjectId;
 
 // @route           GET /api/todo/all
 // @desc            Gets ALL todo
-// @access          Public
+// @access          Private
 router.get('/all', auth, async (req, res) => {
   try {
     const { limit } = req.body;
@@ -26,7 +26,7 @@ router.get('/all', auth, async (req, res) => {
 
 // @route           GET /api/todo/:id
 // @desc            Get a todo
-// @access          Public
+// @access          Private
 router.get('/:id', auth, async (req, res) => {
   try {
     todo = await Todo.findById(req.params.id);
@@ -42,7 +42,7 @@ router.get('/:id', auth, async (req, res) => {
 
 // @route           POST /api/todo/
 // @desc            Post a TODO to the database
-// @access          Public
+// @access          Private
 router.post(
   '/',
   [[check('name', 'Name required for a todo').notEmpty()], auth],
@@ -76,7 +76,7 @@ router.post(
 
 // @route           UPDATE /api/todo/:id
 // @desc            Update a TODO
-// @access          Public
+// @access          Private
 router.put(
   '/:id',
   [[check('name', 'Name required for a todo').notEmpty()], auth],
@@ -119,7 +119,7 @@ router.put(
 
 // @route           DELETE /api/todo/:id
 // @desc            Delete a TODO
-// @access          Public
+// @access          Private
 router.delete('/:id', auth, async (req, res) => {
   try {
     // StackOverflow recommendation to check if id provided is valid
