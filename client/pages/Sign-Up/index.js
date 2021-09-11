@@ -8,10 +8,30 @@ import {
   StyleSheet,
 } from "react-native";
 
+// import registerUser from '../../components/api/registerUser';
+const registerUser = require('../../components/api/registerUser');
 const SignUpView = () => {
-  const goToSignIn = () => {
+  const successResponse = (data) => {
+    // TODO: Store authentication token
+    console.log("Success register " + data);
     Actions.signin();
+  }
+
+  const errorResponse = (data) => {
+    // TODO: Display error message
+    console.log("Failed response " + data);
+  }
+
+  const goToSignIn = () => {
+    console.log([username, password, fName, lName]);
+    registerUser(username, password, fName, lName, successResponse, errorResponse);
   };
+
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [fName, setFName] = React.useState("");
+  const [lName, setLName] = React.useState("");
+
   return (
     <View style={{ flex: 1, backgroundColor: "#83AF98" }}>
       <Text style={styles.header}> Sign Up </Text>
@@ -30,6 +50,7 @@ const SignUpView = () => {
         placeholderTextColor="#DAD5D5"
         backgroundColor="#fff"
         placeholder="Type your first name"
+        onChangeText={setFName}
       ></TextInput>
       <Text style={{ color: "#fff", marginLeft: 30 }}> Last Name </Text>
       <TextInput
@@ -42,6 +63,7 @@ const SignUpView = () => {
         placeholderTextColor="#DAD5D5"
         backgroundColor="#fff"
         placeholder="Type your last name"
+        onChangeText={setLName}
       ></TextInput>
       <Text style={{ color: "#fff", marginLeft: 30, marginTop: 20 }}>
         {" "}
@@ -57,6 +79,7 @@ const SignUpView = () => {
         placeholderTextColor="#DAD5D5"
         backgroundColor="#fff"
         placeholder="Type your username"
+        onChangeText={setUsername}
       ></TextInput>
       <Text style={{ color: "#fff", marginLeft: 30, marginTop: 20 }}>
         {" "}
@@ -72,6 +95,7 @@ const SignUpView = () => {
         placeholderTextColor="#DAD5D5"
         backgroundColor="#fff"
         placeholder="Type your password"
+        onChangeText={setPassword}
       ></TextInput>
       <TouchableOpacity
         onPress={goToSignIn}
