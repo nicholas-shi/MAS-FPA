@@ -15,12 +15,12 @@ export const AddTaskView = (props) => {
 
     return (
         <View>
-            <Text>Folder</Text>
-            <TextInput></TextInput>
-            <Text>Name</Text>
-            <TextInput></TextInput>
-            <Text>Notes</Text>
-            <TextInput></TextInput>
+            <Text style={styles.textLabel}>Folder</Text>
+            <TextInput style={styles.textInput}></TextInput>
+            <Text style={styles.textLabel}>Name</Text>
+            <TextInput style={styles.textInput}></TextInput>
+            <Text style={styles.textLabel}>Notes</Text>
+            <TextInput style={styles.textInput}></TextInput>
             <Button title="Add Task" onPress={addTask} color="#C8C8A9"/>
             <Button title="Cancel Add" onPress={} color="#FC9D9A"/>
         </View>
@@ -29,10 +29,12 @@ export const AddTaskView = (props) => {
 
 const styles = StyleSheet.create({
     textLabel: {
-        color: "#fff"
+        color: "#fff",
+        fontSize: 28
     },
     textInput: {
         color: "#ffff",
-        backgroundColor: "#F9CDAD"
+        backgroundColor: "#F9CDAD",
+        fontSize: 28
     }
 });
