@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-// import { Actions } from 'react-native-router-flux';
+import { StyleSheet, View, Button, Text } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 export default TaskDetailView = () => {
-    // const returnToTaskPage = () => {
-    //     Actions.taskview();
-    // }
+    const returnToTaskPage = () => {
+        Actions.taskview();
+    }
     
     const getTaskName = () => {
         return "Sample Task Name";
@@ -15,12 +15,15 @@ export default TaskDetailView = () => {
         return "Sample Task Detail";
     }
 
+    const completeTask = () => {
+        // API Call to perform task completion
+    }
+
     return (
         <View style={stlyes.header}>
             <Text> { getTaskName() } </Text>
-            <View>
-                
-            </View>
+            <Text> { getTaskDetail() } </Text>
+            <Button title="Mark Task as Completed" onPress={completeTask} color="#FC9D9A"/>
         </View>
     )
 }
@@ -36,6 +39,7 @@ const stlyes = StyleSheet.create({
     taskDetailBox: {
         textAlign: "left",
         backgroundColor: "#F9CDAD",
+        color: "#fff"
     },
     completBtn: {
         textAlign: "center",

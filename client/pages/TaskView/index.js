@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActionSheetIOS } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -17,6 +17,10 @@ export default TaskView = (props) => {
 
     const goToTaskViewDetail = ({taskName, taskDetail }) => {
         Actions.taskviewdetail();
+    }
+
+    const goToAddTaskView = () => {
+        Actions.addtaskview();
     }
 
     const changeTaskList = (listName) => {
@@ -58,7 +62,10 @@ export default TaskView = (props) => {
 
     return (
         <View>
-            <DropDownPicker items={taskListNames} defaultIndex={0} onChangeItem={e => changeTaskList(items.label)}/>
+            <View style={styles.header}>
+                <DropDownPicker items={taskListNames} defaultIndex={0} onChangeItem={e => changeTaskList(items.label)}/>
+                <Button style={styles.addBtn} onPress={goToAddTaskView} title="Add Tasks" color="#C8C8A9" />
+            </View>
             <TaskList taskData={displayList} />
         </View>
     )
@@ -75,17 +82,20 @@ const styles = StyleSheet.create({
         paddingTop: 30,
         paddingBottom: 50,
         fontSize: 32,
+        display: 'flex'
     },
     background: {
         backgroundColor: "#83AF98"
     },
     taskItem: {
         textAlign: "left",
-        color: "#F9CDAD",
+        backgroundColor: "#F9CDAD",
+        color: "#fff"
     },
     addBtn: {
         textAlign: "center",
-        color: "#C8C8A9"
+        backgroundColor: "#C8C8A9",
+        color: "#fff"
     },
     taskCategory: {
         textAlign: "center",

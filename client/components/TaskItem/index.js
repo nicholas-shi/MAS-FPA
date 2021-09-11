@@ -9,7 +9,7 @@ export default TaskItem = ({ taskName, taskDetail, taskKey }) => {
 
     return <View>
         <TouchableOpacity style={styles.taskItem} onPress={gotoTaskDetails}>
-            <Text style={}>
+            <Text style={taskItem}>
                 { taskName }
             </Text>
         </TouchableOpacity>
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     taskItem: {
         backgroundColor: "#F9CDAD",
         textAlign: "left",
-        display: "flex"
+        display: "flex",
+        fontSize: 28
     }
 });
