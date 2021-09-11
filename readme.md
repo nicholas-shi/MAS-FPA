@@ -2,8 +2,10 @@
 
 ## Getting Started
 
-1. After cloning / pulling the repo, make sure to run an `npm install` in the server directory (`cd server`)
-2. Create a `.env` file in the `server` directory with a the following fields:
+### Backend Setup
+
+1. After cloning / pulling the repo, make sure to run an `npm install` in the main directory
+2. Create a `.env` file in the root directory with the following fields:
 
 ```
 mongoURI=mongodb+srv://<username>:<password>@<mongodb-cluster-id>.mongodb.net/<database_name>?retryWrites=true&w=majority
@@ -14,7 +16,10 @@ jwtSecret=<some_jwt_secret>
 
     Also, the jwtSecret can be literally anything. Just keep it secret.
 
-3. For development, run `npm run dev` inside the `server` directory. If production, run `npm run start`.
+3. `cd `into `client` directory and run `npm install --global expo-cli`
+4. Run `npm install` in the client folder to install the dependencies
+
+For development, run `npm run dev` inside the root directory. Download the Expo Go app, create an account and scan the QR code in your terminal.
 
 ## Making Requests to the API
 
