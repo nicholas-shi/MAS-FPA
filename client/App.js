@@ -1,22 +1,11 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 
-// import Routes from './Router';
-import TaskView from './pages/TaskView/index';
+import Routes from './Router';
 
 export default function App() {
   return (
     <React.Fragment>
-      <TaskView />
+      <Routes />
     </React.Fragment>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

@@ -2,23 +2,33 @@ import React from "react";
 import {
   View,
   Text,
-  FlatList,
-  SafeAreaView,
   StyleSheet,
   StatusBar,
 } from "react-native";
 import TaskItem from '../TaskItem/index';
 
-export default TaskList = (props) => {
-  let taskData = props.taskData;
+// export default TaskList = (props) => {
+//   let taskData = props.taskData;
+//   return (
+//     <View style={styles.container}>
+//       {taskData.map((e) => {
+//         return <TaskItem taskName={e.title} taskDetail={e.description} taskKey={e.id} />
+//       })}
+//     </View>
+//   );
+// };
+
+export default TaskList = ({ taskData }) => {
+  if (taskData == null)
+    return <React.Fragment />
   return (
-    <View style={style.container}>
-      {taskData.map(e => {
+    <View>
+      { taskData.map(e => {
         return <TaskItem taskName={e.title} taskDetail={e.description} taskKey={e.id} />
       })}
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
