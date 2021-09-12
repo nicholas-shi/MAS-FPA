@@ -9,15 +9,19 @@
   },
   "dependencies": {
     "@expo/ngrok": "^4.1.0",
+    "@react-native-async-storage/async-storage": "^1.15.7",
+    "@react-native-community/checkbox": "^0.5.8",
     "expo": "~42.0.1",
     "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-check-box": "^2.1.7",
+    "react-native-dropdown-picker": "^5.1.25",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-reanimated": "^2.2.0",
     "react-native-router-flux": "^4.3.1",
-    "react-native-screens": "^3.6.0",
+    "react-native-screens": "^3.4.0",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
