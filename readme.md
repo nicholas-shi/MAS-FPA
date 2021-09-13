@@ -1,4 +1,4 @@
-# MAS-FPA Backend
+# MAS-FPA
 
 ## Getting Started
 
